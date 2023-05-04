@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBDMMModelStoreContainer" CdmEntityContainer="DBDMMEntities">
+    <EntitySetMapping Name="Debit_Supplier">
+      <EntityTypeMapping TypeName="DBDMMModel.Debit_Supplier">
+        <MappingFragment StoreEntitySet="Debit_Supplier">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_Supplier" ColumnName="ID_Supplier" />
+          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="DateT" ColumnName="DateT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentSuppliers">
+      <EntityTypeMapping TypeName="DBDMMModel.PaymentSupplier">
+        <MappingFragment StoreEntitySet="PaymentSupplier">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_Supplier" ColumnName="ID_Supplier" />
+          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="DateT" ColumnName="DateT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Suppliers">
+      <EntityTypeMapping TypeName="DBDMMModel.TB_Suppliers">
+        <MappingFragment StoreEntitySet="TB_Suppliers">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="DateT" ColumnName="DateT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Debit_Customer">
+      <EntityTypeMapping TypeName="DBDMMModel.Debit_Customer">
+        <MappingFragment StoreEntitySet="Debit_Customer">
+          <ScalarProperty Name="DateT" ColumnName="DateT" />
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+          <ScalarProperty Name="ID_Supplier" ColumnName="ID_Supplier" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentCustomers">
+      <EntityTypeMapping TypeName="DBDMMModel.PaymentCustomer">
+        <MappingFragment StoreEntitySet="PaymentCustomer">
+          <ScalarProperty Name="DateT" ColumnName="DateT" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+          <ScalarProperty Name="ID_Supplier" ColumnName="ID_Supplier" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Customer">
+      <EntityTypeMapping TypeName="DBDMMModel.TB_Customer">
+        <MappingFragment StoreEntitySet="TB_Customer">
+          <ScalarProperty Name="DateT" ColumnName="DateT" />
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Users">
+      <EntityTypeMapping TypeName="DBDMMModel.TB_Users">
+        <MappingFragment StoreEntitySet="TB_Users">
+          <ScalarProperty Name="DateT" ColumnName="DateT" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

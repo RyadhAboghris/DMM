@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c91914328477490aaecdeea458bc869a" Name="Diagram1">
+        <EntityTypeShape EntityType="DBDMMModel.Debit_Supplier" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDMMModel.PaymentSupplier" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDMMModel.TB_Suppliers" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="DBDMMModel.FK_Debit_Supplier_TB_Suppliers" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDMMModel.FK_PaymentSupplier_TB_Suppliers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBDMMModel.Debit_Customer" Width="1.5" PointX="7.625" PointY="4" />
+        <EntityTypeShape EntityType="DBDMMModel.PaymentCustomer" Width="1.5" PointX="7.625" PointY="1.125" />
+        <EntityTypeShape EntityType="DBDMMModel.TB_Customer" Width="1.5" PointX="5.375" PointY="2.5" />
+        <AssociationConnector Association="DBDMMModel.FK_Debit_Customer_TB_Customer" />
+        <AssociationConnector Association="DBDMMModel.FK_PaymentCustomer_TB_Customer" />
+        <EntityTypeShape EntityType="DBDMMModel.TB_Users" Width="1.5" PointX="0.75" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

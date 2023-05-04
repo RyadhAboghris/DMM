@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBDMMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Debit_Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Supplier" Type="int" />
+    <Property Name="SupplierName" Type="nvarchar(max)" />
+    <Property Name="FullName" Type="nvarchar(max)" />
+    <Property Name="Debit" Type="float" />
+    <Property Name="DateT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Debit_Supplier">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Supplier" Type="int" />
+    <Property Name="SupplierName" Type="nvarchar" MaxLength="50" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Debit" Type="float" />
+    <Property Name="DateT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PaymentCustomer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Supplier" Type="int" />
+    <Property Name="SupplierName" Type="nvarchar(max)" />
+    <Property Name="Payment" Type="float" />
+    <Property Name="DateT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PaymentSupplier">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Supplier" Type="int" />
+    <Property Name="SupplierName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Payment" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TB_Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Debit" Type="float" />
+    <Property Name="DateT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TB_Suppliers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Debit" Type="float" />
+    <Property Name="DateT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TB_Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateT" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_Debit_Customer_TB_Customer">
+    <End Role="TB_Customer" Type="Self.TB_Customer" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Debit_Customer" Type="Self.Debit_Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Debit_Customer">
+        <PropertyRef Name="ID_Supplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Debit_Supplier_TB_Suppliers">
+    <End Role="TB_Suppliers" Type="Self.TB_Suppliers" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Debit_Supplier" Type="Self.Debit_Supplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Suppliers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Debit_Supplier">
+        <PropertyRef Name="ID_Supplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentCustomer_TB_Customer">
+    <End Role="TB_Customer" Type="Self.TB_Customer" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PaymentCustomer" Type="Self.PaymentCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PaymentCustomer">
+        <PropertyRef Name="ID_Supplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentSupplier_TB_Suppliers">
+    <End Role="TB_Suppliers" Type="Self.TB_Suppliers" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PaymentSupplier" Type="Self.PaymentSupplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Suppliers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PaymentSupplier">
+        <PropertyRef Name="ID_Supplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBDMMModelStoreContainer">
+    <EntitySet Name="Debit_Customer" EntityType="Self.Debit_Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Debit_Supplier" EntityType="Self.Debit_Supplier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentCustomer" EntityType="Self.PaymentCustomer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentSupplier" EntityType="Self.PaymentSupplier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Customer" EntityType="Self.TB_Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Suppliers" EntityType="Self.TB_Suppliers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Users" EntityType="Self.TB_Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Debit_Customer_TB_Customer" Association="Self.FK_Debit_Customer_TB_Customer">
+      <End Role="TB_Customer" EntitySet="TB_Customer" />
+      <End Role="Debit_Customer" EntitySet="Debit_Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Debit_Supplier_TB_Suppliers" Association="Self.FK_Debit_Supplier_TB_Suppliers">
+      <End Role="TB_Suppliers" EntitySet="TB_Suppliers" />
+      <End Role="Debit_Supplier" EntitySet="Debit_Supplier" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentCustomer_TB_Customer" Association="Self.FK_PaymentCustomer_TB_Customer">
+      <End Role="TB_Customer" EntitySet="TB_Customer" />
+      <End Role="PaymentCustomer" EntitySet="PaymentCustomer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentSupplier_TB_Suppliers" Association="Self.FK_PaymentSupplier_TB_Suppliers">
+      <End Role="TB_Suppliers" EntitySet="TB_Suppliers" />
+      <End Role="PaymentSupplier" EntitySet="PaymentSupplier" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

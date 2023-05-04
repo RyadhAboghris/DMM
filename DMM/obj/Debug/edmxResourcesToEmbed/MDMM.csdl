@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBDMMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Debit_Supplier">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Supplier" Type="Int32" />
+    <Property Name="SupplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Debit" Type="Double" />
+    <Property Name="DateT" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TB_Suppliers" Relationship="Self.FK_Debit_Supplier_TB_Suppliers" FromRole="Debit_Supplier" ToRole="TB_Suppliers" />
+  </EntityType>
+  <EntityType Name="PaymentSupplier">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Supplier" Type="Int32" />
+    <Property Name="SupplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Payment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateT" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TB_Suppliers" Relationship="Self.FK_PaymentSupplier_TB_Suppliers" FromRole="PaymentSupplier" ToRole="TB_Suppliers" />
+  </EntityType>
+  <EntityType Name="TB_Suppliers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Debit" Type="Double" />
+    <Property Name="DateT" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Debit_Supplier" Relationship="Self.FK_Debit_Supplier_TB_Suppliers" FromRole="TB_Suppliers" ToRole="Debit_Supplier" />
+    <NavigationProperty Name="PaymentSuppliers" Relationship="Self.FK_PaymentSupplier_TB_Suppliers" FromRole="TB_Suppliers" ToRole="PaymentSupplier" />
+  </EntityType>
+  <Association Name="FK_Debit_Supplier_TB_Suppliers">
+    <End Role="TB_Suppliers" Type="Self.TB_Suppliers" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Debit_Supplier" Type="Self.Debit_Supplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Suppliers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Debit_Supplier">
+        <PropertyRef Name="ID_Supplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentSupplier_TB_Suppliers">
+    <End Role="TB_Suppliers" Type="Self.TB_Suppliers" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PaymentSupplier" Type="Self.PaymentSupplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Suppliers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PaymentSupplier">
+        <PropertyRef Name="ID_Supplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBDMMEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Debit_Supplier" EntityType="Self.Debit_Supplier" />
+    <EntitySet Name="PaymentSuppliers" EntityType="Self.PaymentSupplier" />
+    <EntitySet Name="TB_Suppliers" EntityType="Self.TB_Suppliers" />
+    <AssociationSet Name="FK_Debit_Supplier_TB_Suppliers" Association="Self.FK_Debit_Supplier_TB_Suppliers">
+      <End Role="TB_Suppliers" EntitySet="TB_Suppliers" />
+      <End Role="Debit_Supplier" EntitySet="Debit_Supplier" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentSupplier_TB_Suppliers" Association="Self.FK_PaymentSupplier_TB_Suppliers">
+      <End Role="TB_Suppliers" EntitySet="TB_Suppliers" />
+      <End Role="PaymentSupplier" EntitySet="PaymentSuppliers" />
+    </AssociationSet>
+    <EntitySet Name="Debit_Customer" EntityType="DBDMMModel.Debit_Customer" />
+    <EntitySet Name="PaymentCustomers" EntityType="DBDMMModel.PaymentCustomer" />
+    <EntitySet Name="TB_Customer" EntityType="DBDMMModel.TB_Customer" />
+    <AssociationSet Name="FK_Debit_Customer_TB_Customer" Association="DBDMMModel.FK_Debit_Customer_TB_Customer">
+      <End Role="TB_Customer" EntitySet="TB_Customer" />
+      <End Role="Debit_Customer" EntitySet="Debit_Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentCustomer_TB_Customer" Association="DBDMMModel.FK_PaymentCustomer_TB_Customer">
+      <End Role="TB_Customer" EntitySet="TB_Customer" />
+      <End Role="PaymentCustomer" EntitySet="PaymentCustomers" />
+    </AssociationSet>
+    <EntitySet Name="TB_Users" EntityType="DBDMMModel.TB_Users" />
+  </EntityContainer>
+  <EntityType Name="Debit_Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Supplier" Type="Int32" />
+    <Property Name="SupplierName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Debit" Type="Double" />
+    <Property Name="DateT" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TB_Customer" Relationship="DBDMMModel.FK_Debit_Customer_TB_Customer" FromRole="Debit_Customer" ToRole="TB_Customer" />
+  </EntityType>
+  <EntityType Name="PaymentCustomer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Supplier" Type="Int32" />
+    <Property Name="SupplierName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Payment" Type="Double" />
+    <Property Name="DateT" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TB_Customer" Relationship="DBDMMModel.FK_PaymentCustomer_TB_Customer" FromRole="PaymentCustomer" ToRole="TB_Customer" />
+  </EntityType>
+  <EntityType Name="TB_Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Debit" Type="Double" />
+    <Property Name="DateT" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Debit_Customer" Relationship="DBDMMModel.FK_Debit_Customer_TB_Customer" FromRole="TB_Customer" ToRole="Debit_Customer" />
+    <NavigationProperty Name="PaymentCustomers" Relationship="DBDMMModel.FK_PaymentCustomer_TB_Customer" FromRole="TB_Customer" ToRole="PaymentCustomer" />
+  </EntityType>
+  <Association Name="FK_Debit_Customer_TB_Customer">
+    <End Type="DBDMMModel.TB_Customer" Role="TB_Customer" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DBDMMModel.Debit_Customer" Role="Debit_Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Debit_Customer">
+        <PropertyRef Name="ID_Supplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentCustomer_TB_Customer">
+    <End Type="DBDMMModel.TB_Customer" Role="TB_Customer" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DBDMMModel.PaymentCustomer" Role="PaymentCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PaymentCustomer">
+        <PropertyRef Name="ID_Supplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TB_Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateT" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>
